@@ -1,0 +1,9 @@
+﻿  main.cpp
+d:\mydata\cpp_project\ga_equation_solver\ga_equation_solver\ga_equation_solver\ga_util.h(285): warning C4244: '引数': 'double' から 'unsigned int' への変換です。データが失われる可能性があります。
+  コード生成しています。
+  0 of 334 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  ga_equation_solver.vcxproj -> D:\myData\cpp_project\ga_equation_solver\ga_equation_solver\Release\ga_equation_solver.exe
+  ga_equation_solver.vcxproj -> D:\myData\cpp_project\ga_equation_solver\ga_equation_solver\Release\ga_equation_solver.pdb (Full PDB)

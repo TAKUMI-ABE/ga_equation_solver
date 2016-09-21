@@ -7,20 +7,21 @@
 #include <algorithm>
 
 // params of GA
-const double PTYPE_MAX = 5.0;
-const double PTYPE_MIN = -5.0;
-const int GTYPE_LEN = 20;
+const double PTYPE_MAX = 5.12;
+const double PTYPE_MIN = -5.12;
+const int GTYPE_LEN = 30;
 const int GTYPE_MAX = 1;
-const int POP = 10;
-const int NUM_OF_GENERATION = 100;
+const int POP = 100;
+const int NUM_OF_GENERATION = 20;
 
 // params of GA Operators
 const double ELITE_RATE = 0.1;
-const double MUTATE_RATE = 0.02;
+const double MUTATE_RATE = 0.01;
 
 // GA Farget Function
 double fx(double x) {
-	return pow((x), 2) - 9.0;
+	return pow((x), 2) - 2.0;
+	//return x - floor(x) - 1.0 / (1.0 + exp(-1.0*x));
 }
 
 // GA Fitness Function
@@ -65,8 +66,6 @@ void Gtype::setGtypeRamdom(int gtypeCodeLength, int gtypeCodeMax){
 
 int Gtype::mutateGtype(){
 	int mutateCount = 0;
-	int mutateFlag = 0;
-
 	for (int i = 0; i < gCodeLength; i++) {
 		if (((double)rand() / RAND_MAX) <= MUTATE_RATE) {
 			gVector[i] = (gVector[i] == 1)? 0 : 1;
@@ -269,8 +268,6 @@ void GaGenaration::crossover(){
 		parent2.push_back(p2Candidate);
 	}
 
-	//std::cout << std::endl << parent1.size() << ", " << parent1.size() << std::endl;
-
 	// cross over parent
 	std::vector<GaIndividual> children;
 	for (int i = 0; i < getPopulation()*(1.0 - ELITE_RATE); i++)
@@ -312,16 +309,16 @@ GaIndividual GaGenaration::getChildrenCrossOver(GaIndividual& parent1, GaIndivid
 	GaIndividual child;
 	child = parent1;
 
-	//set parent data
+	// set parent data
 	child.setParent1(parent1.getRank());
 	child.setParent2(parent2.getRank());
 
-	//decide intersection ramdomely
+	// decide intersection ramdomely
 	int intersection;
 	intersection = (int)(parent1.gtype.getGCodeLength() * rand() / RAND_MAX);
 	child.setCrossPoint(intersection);
 
-	//calc new gtype
+	// calc new gtype
 	for (int i = 0; i < child.gtype.getGCodeLength(); i++)
 		if (i < intersection)
 			child.gtype.gVector[i] = parent2.gtype.gVector[i];
